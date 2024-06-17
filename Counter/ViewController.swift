@@ -49,7 +49,6 @@ final class ViewController: UIViewController {
         }
     // функция для расчета даты в момент нажатия кнопки
     private func setDate() -> String {
-        counterLabel.text = "0"
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
         return dateFormatter.string(from: Date())
     }
