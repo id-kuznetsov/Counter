@@ -30,15 +30,18 @@ final class ViewController: UIViewController {
             count += 1
             counterLabel.text = "Значение счетчика: \(count)"
             historyCount.text += "\n\(setDate()): значение изменено на +1"
+            scrollUpdate()
         }
     // Уменьшение счетчика
         @IBAction private func decreaseButton(_ sender: Any) {
             if count == 0 {
                 historyCount.text += "\n\(setDate()): попытка уменьшить значение счётчика ниже 0"
+                scrollUpdate()
             } else {
                 count -= 1
                 counterLabel.text = "Значение счетчика: \(count)"
                 historyCount.text += "\n\(setDate()): значение изменено на -1"
+                scrollUpdate()
             }
         }
     // Сброс счетчика
@@ -46,6 +49,7 @@ final class ViewController: UIViewController {
             count = 0
             counterLabel.text = "Значение счетчика: \(count)"
             historyCount.text += "\n\(setDate()): значение сброшено"
+            scrollUpdate()
         }
     // функция для расчета даты в момент нажатия кнопки
     private func setDate() -> String {
@@ -53,5 +57,9 @@ final class ViewController: UIViewController {
         return dateFormatter.string(from: Date())
     }
 
+    private func scrollUpdate() {
+        let range = NSRange(location: historyCount.text.count, length: 0)
+        historyCount.scrollRangeToVisible(range)
+    }
 }
 
